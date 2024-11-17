@@ -12,6 +12,7 @@ class BooksResponseTest {
 
     @Before
     fun setUp() {
+        // Initialize a VolumeInfo object with sample data
         volumeInfo = VolumeInfo(
             title = "Book 1",
             authors = listOf("Author"),
@@ -19,11 +20,13 @@ class BooksResponseTest {
             publishedDate = "1988",
             description = "Description")
 
+        // Initialize a ResponseItems object with sample data
         responseItems = ResponseItems(
             id = "1",
             volumeInfo = volumeInfo
         )
 
+        // Initialize a BooksResponse object with sample data
         booksResponse = BooksResponse(
             kind = "books#volumes",
             totalItems = 1,
@@ -33,6 +36,7 @@ class BooksResponseTest {
 
     @Test
     fun volumeInfo_isInitializedCorrectly() {
+        // Test if a BooksResponse is initialized with correct values
         assertEquals("Book 1", volumeInfo.title)
         assertEquals(listOf("Author"), volumeInfo.authors)
         assertEquals("Publisher", volumeInfo.publisher)
@@ -41,7 +45,23 @@ class BooksResponseTest {
     }
 
     @Test
+    fun responseItems_isInitializedCorrectly() {
+        // Test if a ResponseItems is initialized with correct values
+        assertEquals("1", responseItems.id)
+        assertEquals(volumeInfo, responseItems.volumeInfo)
+    }
+
+    @Test
+    fun booksResponse_isInitializedCorrectly() {
+        // Test if a BooksResponse is initialized with correct values
+        assertEquals("books#volumes", booksResponse.kind)
+        assertEquals(1, booksResponse.totalItems)
+        assertEquals(listOf(responseItems), booksResponse.items)
+    }
+
+    @Test
     fun volumeInfo_equalityAndHashCode() {
+        // Test equality and hashCode of VolumeInfo objects
         val volumeInfo2 = VolumeInfo(
             title = "Book 1",
             authors = listOf("Author"),
@@ -61,13 +81,8 @@ class BooksResponseTest {
         assertNotEquals(volumeInfo.hashCode(), volumeInfo3.hashCode())
     }
 
-    @Test
-    fun responseItems_isInitializedCorrectly() {
-        assertEquals("1", responseItems.id)
-        assertEquals(volumeInfo, responseItems.volumeInfo)
-    }
-
     @Test fun responseItems_equalityAndHashCode() {
+        // Test equality and hashCode of ResponseItems objects
         val responseItems2 = ResponseItems("1", volumeInfo)
         val responseItems3 = ResponseItems("2", volumeInfo)
         assertEquals(responseItems, responseItems2)
@@ -77,14 +92,8 @@ class BooksResponseTest {
     }
 
     @Test
-    fun booksResponse_isInitializedCorrectly() {
-        assertEquals("books#volumes", booksResponse.kind)
-        assertEquals(1, booksResponse.totalItems)
-        assertEquals(listOf(responseItems), booksResponse.items)
-    }
-
-    @Test
     fun booksResponse_equalityAndHashCode() {
+        // Test equality and hashCode of BooksResponse objects
         val booksResponse2 = BooksResponse(
             kind = "books#volumes",
             totalItems = 1,
