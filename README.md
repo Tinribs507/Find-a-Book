@@ -17,7 +17,7 @@ After the user enters the search criteria they are navigated to a results pages 
 * Retrofit: For making API calls to the Google Books API.
 * Moshi: For JSON parsing.
 * ViewModel & LiveData: For managing UI-related data and lifecycle-conscious data updates.
-* Unit Testing: For ensuring code correctness and reliability through tests using Junit
+* Unit Testing & Mockito: For ensuring code correctness and reliability through tests using Junit
 
 ## Future Enhancements:
 
