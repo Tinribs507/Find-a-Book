@@ -1,7 +1,6 @@
 package com.example.findabook.data.remote
 
 import com.example.findabook.data.model.BooksResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
 
@@ -16,5 +15,5 @@ interface ApiService {
      * @return A Call object for the request that returns a BooksResponse.
      */
     @GET("volumes")
-    fun findBooks(@QueryMap options: Map<String, String>): Call<BooksResponse>
+    suspend fun findBooks(@QueryMap options: Map<String, String>): BooksResponse
 }

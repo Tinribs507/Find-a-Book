@@ -3,9 +3,10 @@ package com.example.findabook.data.repository
 import android.util.Log
 import com.example.findabook.data.model.BooksResponse
 import com.example.findabook.data.remote.RetrofitClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Repository class for interacting with the Google Books API.
@@ -38,20 +39,24 @@ class BooksRepository {
             selectedOption, keyWords, inTitle, inAuthor, inPublisher, subject
         )
 
-        val call = keyWords.let { apiService.findBooks(queryMap) }
-        call.enqueue(object : Callback<BooksResponse> {
-            override fun onResponse(call: Call<BooksResponse>, response: Response<BooksResponse>) {
-                if (response.isSuccessful) {
-                    callback(response.body())
+        // Launch a coroutine to make the API request on the IO thread
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = apiService.findBooks(queryMap)
+
+                // Switch to the main dispatcher to update the UI
+                withContext(Dispatchers.Main) {
+                    callback(response)
                     Log.d("RESPONSE", "Successful")
                 }
+            } catch (e: Exception) {
+                // Handle any exceptions that occur during the network call
+                withContext(Dispatchers.Main) {
+                    Log.e("API Error", e.message ?: "Unknown error")
+                    callback(null)
+                }
             }
-
-            override fun onFailure(call: Call<BooksResponse>, t: Throwable) {
-                Log.e("API Error", t.message ?: "Unknown error")
-                callback(null)
-            }
-        })
+        }
     }
 
     /** Builds a query map for searching books using various parameters.
