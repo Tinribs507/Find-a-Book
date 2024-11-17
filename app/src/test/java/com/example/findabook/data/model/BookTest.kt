@@ -3,8 +3,16 @@ package com.example.findabook.data.model
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.*
 
+/**
+ * Test class for the Book object.
+ * Ensures that all fields of the Book object are correctly initialized and behave as expected.
+ */
 class BookTest {
 
+    /**
+     * Test method to verify the default values of the Books object.
+     * Ensures that default values are set correctly when no arguments are provided.
+     */
     @Test
     fun defaultValues_areSetCorrectly() {
         // Create a Book with default values
@@ -18,6 +26,10 @@ class BookTest {
         assertEquals("No Description Available", defaultBook.description)
     }
 
+    /**
+     * Test method to verify custom values of the Books object.
+     * Ensures that custom values are set correctly when custom arguments are provided.
+     */
     @Test
     fun customValues_areSetCorrectly() {
         // Create a Book with custom values
@@ -37,6 +49,15 @@ class BookTest {
         assertEquals("Custom Description", customBook.description)
     }
 
+    /**
+     * Test method to verify the equality and hashCode of the Books object.
+     *
+     * Ensures that two Book objects that have the same values are considered equal
+     * and have the same hashCode.
+     *
+     * Ensures the two Book objects that have different values are not considered equal
+     * and don't have the same hashCode.
+     */
     @Test
     fun equality_andHashCode_workCorrectly() {
         // Create two Book instances with the same values

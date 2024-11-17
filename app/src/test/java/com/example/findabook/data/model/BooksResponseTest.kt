@@ -4,12 +4,22 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.*
 
+/**
+ * Test class for the BooksResponse object.
+ * Ensures that all fields of BooksResponse and its related object (VolumeInfo and ResponseItems)
+ * are corrected initialized and behave as expected.
+ */
+
 class BooksResponseTest {
 
     private lateinit var volumeInfo: VolumeInfo
     private lateinit var responseItems: ResponseItems
     private lateinit var booksResponse: BooksResponse
 
+    /**
+     * Sets up the test environment before each test case.
+     * Initializes sample data for VolumeInfo, ResponseItems and BooksResponse.
+     */
     @Before
     fun setUp() {
         // Initialize a VolumeInfo object with sample data
@@ -34,6 +44,10 @@ class BooksResponseTest {
         )
     }
 
+    /**
+     * Tests the initialization of the VolumeInfo object.
+     * Ensures all fields are set correctly.
+     */
     @Test
     fun volumeInfo_isInitializedCorrectly() {
         // Test if a BooksResponse is initialized with correct values
@@ -44,6 +58,10 @@ class BooksResponseTest {
         assertEquals("Description", volumeInfo.description)
     }
 
+    /**
+     * Tests the initialization of the ResponseItems object.
+     * Ensures all fields are set correctly.
+     */
     @Test
     fun responseItems_isInitializedCorrectly() {
         // Test if a ResponseItems is initialized with correct values
@@ -51,6 +69,10 @@ class BooksResponseTest {
         assertEquals(volumeInfo, responseItems.volumeInfo)
     }
 
+    /**
+     * Tests the initialization of the BooksResponse object.
+     * Ensures all fields are set correctly.
+     */
     @Test
     fun booksResponse_isInitializedCorrectly() {
         // Test if a BooksResponse is initialized with correct values
@@ -59,6 +81,11 @@ class BooksResponseTest {
         assertEquals(listOf(responseItems), booksResponse.items)
     }
 
+    /**
+     * Tests the equality and hashCode of the VolumeInfo objects.
+     * Confirms that two VolumeInfo objects with the same values are considered equal
+     * and have the same hashcode.
+     */
     @Test
     fun volumeInfo_equalityAndHashCode() {
         // Test equality and hashCode of VolumeInfo objects
@@ -81,6 +108,11 @@ class BooksResponseTest {
         assertNotEquals(volumeInfo.hashCode(), volumeInfo3.hashCode())
     }
 
+    /**
+     * Tests the equality and hashCode of the ResponseItems objects.
+     * Confirms that two ResponseItems objects with the same values are considered equal
+     * and have the same hash code.
+     */
     @Test fun responseItems_equalityAndHashCode() {
         // Test equality and hashCode of ResponseItems objects
         val responseItems2 = ResponseItems("1", volumeInfo)
@@ -91,6 +123,11 @@ class BooksResponseTest {
         assertNotEquals(responseItems.hashCode(), responseItems3.hashCode())
     }
 
+    /**
+     * Tests the equality and hashCode of the BooksResponse objects.
+     * Confirms that two BooksResponse objects with the same values are considered equal
+     * and have the same hashcode.
+     */
     @Test
     fun booksResponse_equalityAndHashCode() {
         // Test equality and hashCode of BooksResponse objects
