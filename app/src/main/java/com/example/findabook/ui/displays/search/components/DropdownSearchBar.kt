@@ -1,4 +1,4 @@
-package com.example.findabook.displays.search.components
+package com.example.findabook.ui.displays.search.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

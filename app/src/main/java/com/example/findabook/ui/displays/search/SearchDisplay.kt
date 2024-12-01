@@ -1,4 +1,4 @@
-package com.example.findabook.displays.search
+package com.example.findabook.ui.displays.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,8 +15,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.findabook.displays.search.components.DropDownSearchBar
-import com.example.findabook.displays.search.components.SearchBar
+import com.example.findabook.ui.displays.search.components.DropDownSearchBar
+import com.example.findabook.ui.displays.search.components.SearchBar
 import com.example.findabook.ui.viewmodel.MainViewModel
 
 @Composable
