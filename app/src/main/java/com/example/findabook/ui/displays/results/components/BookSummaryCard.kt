@@ -1,4 +1,4 @@
-package com.example.findabook.displays.results.components
+package com.example.findabook.ui.displays.results.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

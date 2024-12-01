@@ -12,7 +12,7 @@ interface ApiService {
      * Search for books using a map of query options.
      *
      * @param options A map of query parameters to search for books.
-     * @return A Call object for the request that returns a BooksResponse.
+     * @return A BooksResponse object.
      */
     @GET("volumes")
     suspend fun findBooks(@QueryMap options: Map<String, String>): BooksResponse

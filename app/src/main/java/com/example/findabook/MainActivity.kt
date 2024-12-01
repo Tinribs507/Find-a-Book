@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.findabook.displays.results.ResultsDisplay
-import com.example.findabook.displays.search.SearchDisplay
+import com.example.findabook.ui.displays.results.ResultsDisplay
+import com.example.findabook.ui.displays.search.SearchDisplay
 import com.example.findabook.ui.theme.FindABookTheme
 import com.example.findabook.ui.viewmodel.MainViewModel
 

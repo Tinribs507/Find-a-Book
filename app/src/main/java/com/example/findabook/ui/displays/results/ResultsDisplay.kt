@@ -1,4 +1,4 @@
-package com.example.findabook.displays.results
+package com.example.findabook.ui.displays.results
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,7 +12,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.findabook.data.model.Book
-import com.example.findabook.displays.results.components.BookSummaryCard
+import com.example.findabook.ui.displays.results.components.BookSummaryCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
