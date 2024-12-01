@@ -1,11 +1,18 @@
 package com.example.findabook.ui.displays.search.components
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
@@ -13,7 +20,7 @@ import androidx.compose.ui.graphics.Color
  * A composable function that represents a search bar with an optional trailing icon.
  *
  * @param modifier The modifier to be applied to the TextField.
- * @param value The current text in the search bar.
+ * @param text The current text in the search bar.
  * @param placeHolder The placeholder text for the searchbar.
  * @param trailingIcon An optional trailing icon composable.
  * @param onValueChange A function to call when the search bar value changes.
@@ -21,14 +28,18 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
-    value: String,
+    text: String,
     placeHolder: String,
     trailingIcon: @Composable () -> Unit? = {},
-    onValueChange: (String) -> Unit = {}
+    onValueChange: (String) -> Unit = {},
+    clearText: () -> Unit = {}
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused by interactionSource.collectIsFocusedAsState()
+
     OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
-        value = value,
+        value = text,
         onValueChange = { onValueChange(it) },
         textStyle = MaterialTheme.typography.bodyLarge,
         label = {
@@ -39,12 +50,17 @@ fun SearchBar(
             )
         },
         trailingIcon = {
-            trailingIcon()
+            if (trailingIcon != {} && text.isNotEmpty() && isFocused) {
+                IconButton(
+                    onClick = { clearText() }
+                ) {
+                    Icon(Icons.Filled.Clear, contentDescription = "Clear text")
+                }
+            } else {
+                trailingIcon()
+            }
         },
         singleLine = true,
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedTextColor = MaterialTheme.colorScheme.onPrimary,
-            unfocusedTextColor = MaterialTheme.colorScheme.onPrimary
-        )
+        interactionSource = interactionSource
     )
 }

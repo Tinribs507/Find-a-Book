@@ -19,17 +19,18 @@ import androidx.compose.ui.Modifier
 /**
  * A composable function that combines a search bar with a dropdown menu for search options.
  *
- * @param value The current text in the search bar.
+ * @param text The current text in the search bar.
  * @param placeHolder The placeholder text for the searchbar.
  * @param onValueChange A function to call when the search bar value changes.
  * @param onSelectedOptionChange A function to call when a dropdown option is selected
  */
 @Composable
 fun DropDownSearchBar(
-    value: String,
+    text: String,
     placeHolder: String,
     onValueChange: (String) -> Unit,
-    onSelectedOptionChange: (String) -> Unit
+    onSelectedOptionChange: (String) -> Unit,
+    clearText: () -> Unit = {}
 ) {
     // State to track whether the dropdown menu is expanded
     var expanded by remember { mutableStateOf(false) }
@@ -50,7 +51,7 @@ fun DropDownSearchBar(
         // Search bar with a trailing icon to expand the dropdown menu
         SearchBar(
             modifier = Modifier.weight(1f),
-            value = value,
+            text = text,
             placeHolder = placeHolder,
             trailingIcon = {
                 IconButton(
@@ -62,7 +63,8 @@ fun DropDownSearchBar(
                     )
                 }
             },
-            onValueChange = { onValueChange(it) }
+            onValueChange = { onValueChange(it) },
+            clearText = { clearText() }
         )
 
         // Dropdown menu that appears when the trailing icon is clicked

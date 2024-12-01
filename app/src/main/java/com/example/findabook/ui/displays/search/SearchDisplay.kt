@@ -37,47 +37,52 @@ fun SearchDisplay(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(8.dp)
+            .padding(top = 33.dp, start = 8.dp, end = 8.dp)
             .background(Color.White)
     ) {
         // DropDown search bar for keywords and selected option
         DropDownSearchBar(
-            value = keyWordsQuery,
+            text = keyWordsQuery,
             placeHolder = "Key words",
             onValueChange = { mainViewModel.updateKeyWordsQuery(it) },
-            onSelectedOptionChange = { mainViewModel.updateSelectedOption(it) }
+            onSelectedOptionChange = { mainViewModel.updateSelectedOption(it) },
+            clearText = { mainViewModel.updateKeyWordsQuery("") }
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // Search bar for book title
         SearchBar(
-            value = titleQuery,
+            text = titleQuery,
             placeHolder = "Books with the title",
-            onValueChange = { mainViewModel.updateTitleQuery(it) }
+            onValueChange = { mainViewModel.updateTitleQuery(it) },
+            clearText = { mainViewModel.updateTitleQuery("") }
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // Search bar for author
         SearchBar(
-            value = authorQuery,
+            text = authorQuery,
             placeHolder = "Books written by",
-            onValueChange = { mainViewModel.updateAuthorQuery(it) }
+            onValueChange = { mainViewModel.updateAuthorQuery(it) },
+            clearText = { mainViewModel.updateAuthorQuery("") }
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // Search bar for publisher
         SearchBar(
-            value = publisherQuery,
+            text = publisherQuery,
             placeHolder = "Books published by",
-            onValueChange = { mainViewModel.updatePublisherQuery(it) }
+            onValueChange = { mainViewModel.updatePublisherQuery(it) },
+            clearText = { mainViewModel.updatePublisherQuery("") }
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // Search bar for subject
         SearchBar(
-            value = subjectQuery,
+            text = subjectQuery,
             placeHolder = "Books on subject",
-            onValueChange = { mainViewModel.updateSubjectQuery(it) }
+            onValueChange = { mainViewModel.updateSubjectQuery(it) },
+            clearText = { mainViewModel.updateSubjectQuery("") }
         )
         Spacer(modifier = Modifier.height(16.dp))
 
