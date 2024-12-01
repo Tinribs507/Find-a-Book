@@ -2,9 +2,9 @@ package com.example.findabook.ui.displays.search.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,15 +26,15 @@ fun SearchBar(
     trailingIcon: @Composable () -> Unit? = {},
     onValueChange: (String) -> Unit = {}
 ) {
-    TextField(
+    OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
         value = value,
         onValueChange = { onValueChange(it) },
         textStyle = MaterialTheme.typography.bodyLarge,
-        placeholder = {
+        label = {
             Text(
                 text = placeHolder,
-                color = Color.Black,
+                color = Color.Black.copy(alpha = 0.4f),
                 style = MaterialTheme.typography.bodyLarge
             )
         },
@@ -42,8 +42,9 @@ fun SearchBar(
             trailingIcon()
         },
         singleLine = true,
-        colors = TextFieldDefaults.colors(
-            unfocusedContainerColor = Color.LightGray.copy(alpha = 0.5f),
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedTextColor = MaterialTheme.colorScheme.onPrimary,
+            unfocusedTextColor = MaterialTheme.colorScheme.onPrimary
         )
     )
 }
