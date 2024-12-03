@@ -14,5 +14,6 @@ data class Book(
     val authors: List<String> = emptyList(),
     val publisher: String? = "Unknown Publisher",
     val publishedDate: String? = "Unknown Date",
-    val description: String = "No Description Available"
+    val description: String = "No Description Available",
+    val imageLinks: ImageLinks? = null
 )

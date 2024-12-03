@@ -1,6 +1,7 @@
 package com.example.findabook.data.remote
 
 import com.example.findabook.data.model.BooksResponse
+import com.example.findabook.data.model.ImageLinks
 import com.example.findabook.data.model.ResponseItems
 import com.example.findabook.data.model.VolumeInfo
 
@@ -23,7 +24,11 @@ class MockApiService : ApiService {
             authors = listOf("Mock Author"),
             publisher = "Mock Publisher",
             publishedDate = "Mock Date",
-            description = "Mock Description"
+            description = "Mock Description",
+            imageLinks = ImageLinks(
+                smallThumbnail = "mockSmallThumbnail",
+                thumbnail = "mockThumbnail"
+            )
         )
 
         // Create a mock ResponseItems object containing the mock VolumeInfo

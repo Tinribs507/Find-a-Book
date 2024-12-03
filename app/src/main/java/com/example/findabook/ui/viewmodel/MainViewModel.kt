@@ -95,12 +95,14 @@ class MainViewModel : ViewModel() {
     private fun mapToBookList(booksResponse: BooksResponse): List<Book> {
         return booksResponse.items.map { item ->
             val volumeInfo = item.volumeInfo
+            val imageLinks = volumeInfo.imageLinks
             Book(
                 title = volumeInfo.title ?: "Unknown Title",
                 authors = volumeInfo.authors ?: emptyList(),
                 publisher = volumeInfo.publisher ?: "Unknown Publisher",
                 publishedDate = volumeInfo.publishedDate ?: "Unknown Date",
-                description = volumeInfo.description ?: "No Description"
+                description = volumeInfo.description ?: "No Description",
+                imageLinks = imageLinks
             )
         }
     }

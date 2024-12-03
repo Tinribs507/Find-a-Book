@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions.*
 
 class BooksResponseTest {
 
+    private lateinit var imageLinks: ImageLinks
     private lateinit var volumeInfo: VolumeInfo
     private lateinit var responseItems: ResponseItems
     private lateinit var booksResponse: BooksResponse
@@ -22,13 +23,20 @@ class BooksResponseTest {
      */
     @Before
     fun setUp() {
+        imageLinks = ImageLinks(
+            smallThumbnail = "smallThumbnail",
+            thumbnail = "thumbnail"
+        )
+
         // Initialize a VolumeInfo object with sample data
         volumeInfo = VolumeInfo(
             title = "Book 1",
             authors = listOf("Author"),
             publisher = "Publisher",
             publishedDate = "1988",
-            description = "Description")
+            description = "Description",
+            imageLinks = imageLinks
+        )
 
         // Initialize a ResponseItems object with sample data
         responseItems = ResponseItems(
@@ -94,14 +102,17 @@ class BooksResponseTest {
             authors = listOf("Author"),
             publisher = "Publisher",
             publishedDate = "1988",
-            description = "Description"
+            description = "Description",
+            imageLinks = imageLinks
         )
         val volumeInfo3 = VolumeInfo(
             title = "Book 2",
             authors = listOf("Author 2"),
             publisher = "Publisher 2",
             publishedDate = "1989",
-            description = "Description")
+            description = "Description",
+            imageLinks = imageLinks
+        )
         assertEquals(volumeInfo, volumeInfo2)
         assertNotEquals(volumeInfo, volumeInfo3)
         assertEquals(volumeInfo.hashCode(), volumeInfo2.hashCode())
