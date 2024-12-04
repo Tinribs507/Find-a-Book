@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.ui.text.google.fonts)
+
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.mockito.core)
@@ -69,4 +70,7 @@ dependencies {
 
     // Moshi
     api(libs.bundles.moshi)
+
+    // Coil
+    implementation(libs.coil.compose)
 }
