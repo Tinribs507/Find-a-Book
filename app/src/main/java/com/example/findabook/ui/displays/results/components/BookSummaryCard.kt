@@ -5,18 +5,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.findabook.data.model.Book
+import com.example.findabook.ui.displays.components.LoadImageFromUrl
 
 @Composable
 fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
@@ -27,16 +27,21 @@ fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text =
-                buildAnnotatedString {
-                    append("Title: ")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                        append(book.title)
-                    }
-                },
-                style = MaterialTheme.typography.titleMedium
-            )
+            book.title?.let {
+                Text(
+                    text = it,
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.titleMedium,
+                    textAlign = TextAlign.Center,
+                )
+            }
+            book.imageLinks?.let {
+                LoadImageFromUrl(
+                    it.smallThumbnail,
+                    modifier = Modifier.fillMaxWidth().size(150.dp)
+                )
+            }
             Spacer(Modifier.height(4.dp))
             Text(text = "Author: ${book.authors}")
             Spacer(Modifier.height(4.dp))

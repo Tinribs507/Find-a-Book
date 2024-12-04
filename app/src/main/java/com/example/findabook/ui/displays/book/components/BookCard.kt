@@ -4,12 +4,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.findabook.data.model.Book
 import com.example.findabook.data.model.ImageLinks
+import com.example.findabook.ui.displays.components.LoadImageFromUrl
 
 @Composable
 fun BookCard(book: Book) {
@@ -17,7 +17,7 @@ fun BookCard(book: Book) {
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant),
         ) {
-        Text(text = book.title!!)
+        book.imageLinks?.let { LoadImageFromUrl(it.thumbnail) }
     }
 }
 
