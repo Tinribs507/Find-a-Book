@@ -11,6 +11,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -42,14 +43,25 @@ fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
                     modifier = Modifier.fillMaxWidth().size(150.dp)
                 )
             }
-            Spacer(Modifier.height(4.dp))
-            Text(text = "Author: ${book.authors}")
-            Spacer(Modifier.height(4.dp))
-            Text(text = "Publisher: ${book.publisher}")
-            Spacer(Modifier.height(4.dp))
-            Text(text = "Published Date: ${book.publishedDate}")
-            Spacer(Modifier.height(4.dp))
-            Text(text = "Description: ${book.description}")
+            Spacer(Modifier.height(10.dp))
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(text = "Author")
+                Text(text = book.authors.toString(), fontWeight = FontWeight.Bold)
+            }
+            Spacer(Modifier.height(10.dp))
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(text = "Publisher")
+                Text(text = book.publisher.toString(), fontWeight = FontWeight.Bold)
+            }
+            Spacer(Modifier.height(10.dp))
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(text = "Published Date")
+                Text(text = book.publishedDate.toString(), fontWeight = FontWeight.Bold)
+            }
+            Spacer(Modifier.height(10.dp))
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(text = book.description, fontWeight = FontWeight.Bold)
+            }
         }
     }
 }
