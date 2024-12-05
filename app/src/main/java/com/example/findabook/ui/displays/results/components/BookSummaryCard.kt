@@ -42,8 +42,8 @@ fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
                     it.smallThumbnail,
                     modifier = Modifier.fillMaxWidth().size(150.dp)
                 )
+                Spacer(Modifier.height(10.dp))
             }
-            Spacer(Modifier.height(10.dp))
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(text = "Author")
                 Text(text = book.authors.toString(), fontWeight = FontWeight.Bold)
