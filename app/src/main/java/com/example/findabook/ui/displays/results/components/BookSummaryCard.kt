@@ -15,9 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.findabook.data.model.Book
+import com.example.findabook.data.model.ImageLinks
 import com.example.findabook.ui.displays.components.LoadImageFromUrl
+import com.example.findabook.ui.theme.FindABookTheme
 
 @Composable
 fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
@@ -25,7 +28,8 @@ fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
         modifier = modifier
             .padding(8.dp)
             .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(4.dp),
+        border = CardDefaults.outlinedCardBorder(),
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             book.title?.let {
@@ -64,4 +68,20 @@ fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BookSummaryCardPreview() {
+    val imageLinks = ImageLinks(
+        thumbnail = "https://books.google.com/books/content?id=WpD_DAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    )
+    val book = Book(
+        title = "The Great Gatsby",
+        authors = listOf("F. Scott Fitzgerald"),
+        publisher = "Scribner",
+        publishedDate = "1925",
+        description = "The Great Gatsby is a novel written by American author F. Scott Fitzgerald that tells the story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.",
+        imageLinks = imageLinks)
+    FindABookTheme { BookSummaryCard(book) }
 }
