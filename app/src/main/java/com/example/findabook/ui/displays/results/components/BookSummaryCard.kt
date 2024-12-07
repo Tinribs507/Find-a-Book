@@ -1,6 +1,7 @@
 package com.example.findabook.ui.displays.results.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.example.findabook.data.model.Book
 import com.example.findabook.data.model.ImageLinks
 import com.example.findabook.ui.displays.components.LoadImageFromUrl
+import com.example.findabook.ui.displays.components.RoundedDivider
 import com.example.findabook.ui.theme.FindABookTheme
 
 @Composable
@@ -35,7 +37,9 @@ fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
             book.title?.let {
                 Text(
                     text = it,
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp),
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center,
@@ -44,26 +48,52 @@ fun BookSummaryCard(book: Book, modifier: Modifier = Modifier) {
             book.imageLinks?.let {
                 LoadImageFromUrl(
                     it.smallThumbnail,
-                    modifier = Modifier.fillMaxWidth().size(150.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .size(150.dp)
                 )
                 Spacer(Modifier.height(10.dp))
             }
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = "Author")
-                Text(text = book.authors.toString(), fontWeight = FontWeight.Bold)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp),
+//                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    RoundedDivider(text = "Author")
+//                    Text(
+//                        text = "Author",
+//                        modifier = Modifier
+//                            .padding(start = 8.dp, end = 8.dp).weight(1f)
+//                    )
+                }
+//                Text(text = book.authors.toString(), fontWeight = FontWeight.Bold)
             }
             Spacer(Modifier.height(10.dp))
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(text = "Publisher")
                 Text(text = book.publisher.toString(), fontWeight = FontWeight.Bold)
             }
             Spacer(Modifier.height(10.dp))
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(text = "Published Date")
                 Text(text = book.publishedDate.toString(), fontWeight = FontWeight.Bold)
             }
             Spacer(Modifier.height(10.dp))
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(text = book.description, fontWeight = FontWeight.Bold)
             }
         }
@@ -82,6 +112,9 @@ fun BookSummaryCardPreview() {
         publisher = "Scribner",
         publishedDate = "1925",
         description = "The Great Gatsby is a novel written by American author F. Scott Fitzgerald that tells the story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.",
-        imageLinks = imageLinks)
+        imageLinks = imageLinks
+    )
     FindABookTheme { BookSummaryCard(book) }
 }
+
+
